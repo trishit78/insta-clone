@@ -1,10 +1,24 @@
 import React from 'react'
 
+import { Container,Box,Flex } from '@chakra-ui/react' 
+import FeedPosts from '../../FeedPosts/FeedPosts'
+import SuggestedUsers from '../../SuggestedUsers/SuggestedUsers'
 function HomePage() {
   return (
-    <div>
-        <h1 className='text-red-500'>Homepage</h1>
-    </div>
+    <>
+    <Container maxW={"container.lg"}>
+        <Flex gap={20}>
+            <Box flex={2} py={10}  >
+                <FeedPosts/>
+            </Box>
+            <Box flex={3} mr={20} display={{base:"none",lg:"block"}} maxW={"300px"} >
+                <SuggestedUsers />
+
+            </Box>
+        </Flex>
+    </Container>
+        
+    </>
   )
 }
 
