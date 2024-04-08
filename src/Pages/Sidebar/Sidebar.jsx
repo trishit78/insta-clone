@@ -101,7 +101,8 @@ function Sidebar() {
             </Tooltip>
           ))}
         </Flex>
-        
+
+
         <Tooltip
         hasArrow
         label={"Logout"}
@@ -120,7 +121,7 @@ function Sidebar() {
             borderRadius={6}
             p={2}
             w={{ base: "10", md: "full" }}
-            mt={"auto"}
+            mt={{ base: "8rem", md: "8.6rem" }}
             justifyContent={{ base: "center", md: "flex-start" }}
         >
             <CiLogout size={25} />
@@ -129,6 +130,7 @@ function Sidebar() {
             </Box>
         </Link>
     </Tooltip>
+    
         {/* <Tooltip
           hasArrow
           label={"Logout"}
