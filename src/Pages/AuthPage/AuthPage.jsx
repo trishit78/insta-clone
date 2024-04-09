@@ -21,7 +21,7 @@ function AuthPage() {
                     <Box textAlign={"center"}>
                         Get the App
                     </Box>
-                    <Flex gap={5} justifyContent={"center"}>
+                    <Flex gap={5} justifyContent={"center"} mb={2}>
                         <Image src={microsoftPhoto} h={"10"} alt='Microsoft logo' />
                         <Image src={playStore} h={"10"} alt='Playstore logo' />
                         

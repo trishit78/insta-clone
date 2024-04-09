@@ -1,7 +1,8 @@
 import React from "react";
 
 import logo from "../../../public/logo.png";
-import google from "../../../public/google.png";
+
+import GoogleAuth from "./GoogleAuth";
 import { useState } from "react";
 import {
   Container,
@@ -13,54 +14,30 @@ import {
   Button,
   Text,
 } from "@chakra-ui/react";
-import {  toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import Login from "./Login";
+import Signup from "./Signup";
+
 function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
-    const navigate=useNavigate();
-  const [inputs,setInputs] = useState({
-    email:'',
-    password:'',
-    confirmPassword:''
+
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
   const notify = () => toast("Wow so easy !");
-  const handleAuth=()=> {
-    if(!inputs.email || !inputs.password){
-        toast.error("Please fill the input texts")
-        return;
-    }
-    navigate("/");
-
-  }
 
   return (
     <>
-      <Box border={"1px solid gray"} borderRadius={4} padding={5}>
-        <VStack spacing={4}>
+      <Box border={"1px solid gray"} borderRadius={4} padding={5} mt={2} >
+        <VStack spacing={2}>
           <Image src={logo} h={24} cursor={"pointer"} alt="Instagram" />
-          <Input placeholder="Email" fontSize={14} type="email" value={inputs.email} onChange={(e)=>setInputs({...inputs,email:e.target.value})} />
-          <Input placeholder="Password" fontSize={14} type="password" value={inputs.password} onChange={(e)=>setInputs({...inputs,password:e.target.value})}/>
 
-          {!isLogin ? (
-            <Input
-              placeholder="Confirm Password"
-              fontSize={14}
-              type="password"
-              value={inputs.confirmPassword}
-              onChange={(e)=>setInputs({...inputs,confirmPassword:e.target.value})}
-            />
-          ) : null}
-          <Button
-            w={"full"}
-            colorScheme="blue"
-            size={"sm"}
-            fontSize={"14"}
-            onClick={handleAuth}
-          >
-            {isLogin ? "Log In" : "Sign Up"}
-          </Button>
+          {isLogin ? <Login /> : <Signup />}
+
           <Flex
             alignItems={"center"}
             justifyContent={"center"}
@@ -75,16 +52,7 @@ function AuthForm() {
             <Box flex={2} h={"1px"} bg={"gray.400"} />
           </Flex>
 
-          <Flex
-            alignItems={"center"}
-            justifyContent={"center"}
-            cursor={"pointer"}
-          >
-            <Image src={google} w={5} alt="Google Logo" />
-            <Text mx="2" color={"blue.500"}>
-              Log In With Google
-            </Text>
-          </Flex>
+          <GoogleAuth />
         </VStack>
       </Box>
 

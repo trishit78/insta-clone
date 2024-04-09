@@ -7,10 +7,11 @@ import {
   CreatePostLogo,
 } from "../../assets/constants";
 import { Link as RouterLink } from "react-router-dom";
-import { Avatar, Box, Flex, Link, Tooltip } from "@chakra-ui/react";
+import { Avatar, Box, Flex, Link, Tooltip,Button } from "@chakra-ui/react";
 import { FaHome } from "react-icons/fa";
 import pic from "../../../public/profilepic.png";
 import { CiLogout } from "react-icons/ci";
+import useLogout from "../../hooks/useLogout";
 function Sidebar() {
   const sidebarItems = [
     {
@@ -36,6 +37,10 @@ function Sidebar() {
       link: "/trishit",
     },
   ];
+
+  const {handleLogout,isLoggingOut,error} = useLogout();
+
+
 
   return (
     <Box
@@ -102,6 +107,8 @@ function Sidebar() {
           ))}
         </Flex>
 
+           {/* LOGOUT */}
+
 
         <Tooltip
         hasArrow
@@ -111,10 +118,8 @@ function Sidebar() {
         openDelay={300}
         display={{ base: "block", md: 'none' }}
     >
-        <Link
-            display={"flex"}
-            to={'/auth'}
-            as={RouterLink}
+        <Flex
+            onClick={handleLogout}
             alignItems={"center"}
             gap={4}
             _hover={{ bg: 'whiteAlpha.400' }}
@@ -125,10 +130,14 @@ function Sidebar() {
             justifyContent={{ base: "center", md: "flex-start" }}
         >
             <CiLogout size={25} />
-            <Box display={{ base: "none", md: "block" }}>
+            <Button display={{ base: "none", md: "block" }}
+            varaint={"ghost"}
+            _hover={{bg:"transparent"}}
+            isLoading={isLoggingOut}
+            >
                 Logout
-            </Box>
-        </Link>
+            </Button>
+        </Flex>
     </Tooltip>
     
         {/* <Tooltip
