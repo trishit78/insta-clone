@@ -4,6 +4,7 @@ import useAuthStore from '../../store/authStore'
 
 const ProfileLink = () => {
 	const authUser = useAuthStore((state) => state.user);
+    //console.log(authUser.userName)
 
 	return (
 		<Tooltip
@@ -16,7 +17,7 @@ const ProfileLink = () => {
 		>
 			<Link
 				display={"flex"}
-				to={`/${authUser?.username}`}
+				to={`/${authUser?.userName}`}
 				as={RouterLink}
 				alignItems={"center"}
 				gap={4}

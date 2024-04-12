@@ -3,7 +3,14 @@ import React from 'react'
 import SuggestedHeader from './SuggestedHeader'
 import { VStack,Flex,Text,Box,Link } from '@chakra-ui/react'
 import SuggestedUser from './SuggestedUser'
+import useGetSuggestedUsers from '../hooks/useGetSuggestedUsers'
 function SuggestedUsers() {
+
+  const {isLoading,suggestedUsers} = useGetSuggestedUsers();
+
+  if(isLoading) return null;
+
+
   return (
     <VStack py={8} px={6} gap={4}>
       <SuggestedHeader />
@@ -17,10 +24,16 @@ function SuggestedUsers() {
         </Text>
       </Flex>
 
-      <SuggestedUser name="john" followers={2342} avatar='https://images.pexels.com/photos/2860740/pexels-photo-2860740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />
+      {
+        suggestedUsers.map((user)=>(
+          <SuggestedUser user={user} key={user.id} />
+        ))
+      }
+
+      {/* <SuggestedUser name="john" followers={2342} avatar='https://images.pexels.com/photos/2860740/pexels-photo-2860740.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' />
       <SuggestedUser name="kittie" followers={4231} avatar='https://images.pexels.com/photos/3597931/pexels-photo-3597931.jpeg?auto=compress&cs=tinysrgb&w=600'/>
       <SuggestedUser name="mike" followers={4352} avatar='https://images.pexels.com/photos/2896428/pexels-photo-2896428.jpeg?auto=compress&cs=tinysrgb&w=600'/>
-
+ */}
       <Box
       fontSize={12}
       color={"gray.500"}

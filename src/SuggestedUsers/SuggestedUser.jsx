@@ -3,20 +3,30 @@ import React from 'react'
 
 import { useState } from 'react';
 import { Avatar,Flex,VStack,Box,Button } from '@chakra-ui/react';
-function SuggestedUser({name,followers,avatar}) {
+import { useAuthState } from 'react-firebase-hooks/auth';
+import userAuthStore from '../store/authStore';
+function SuggestedUser({user}) {
 
+    const authUser = userAuthStore((state)=>state.user)
+    //console.log(authUser.followers)
+    console.log(user)
     const [isFollowed,setIsFollowed] = useState(false);
   return (
     <>
         <Flex justifyContent={"space-between"} alignItems={"center"} w={"full"}>
             <Flex alignItems={"center"} gap={2}>
-                <Avatar src={avatar} name={name} size={"md"} />
+
+
+                {/* TO BE CHANGED */}
+
+
+                <Avatar src={user.profilePicURL   }  size={"md"} />
                 <VStack spacing={2}>
                     <Box fontSize={12} fontWeight={"bold"} alignSelf={"flex-start"}>
-                        {name}
+                        {user.fullName}
                     </Box>
                     <Box fontSize={11} color={"gray.500"}>
-                        {followers} followers
+                        {user.followers.length} followers
                     </Box>
                 </VStack>
             </Flex>
